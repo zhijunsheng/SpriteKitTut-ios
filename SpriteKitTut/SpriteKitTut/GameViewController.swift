@@ -18,6 +18,8 @@ class GameViewController: UIViewController {
             let scene = GameScene()
             scene.size = view.bounds.size
             view.presentScene(scene)
+            
+            view.showsFPS = true
         }
     }
 
