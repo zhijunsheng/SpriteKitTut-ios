@@ -35,10 +35,22 @@ class GameScene: SKScene {
         addChild(ant)
         
         ant.run(SKAction.repeatForever(antAnimAct))
+        
+        let up = SKAction.moveBy(x: 0, y: 800, duration: 3)
+        let turnEast = SKAction.rotate(byAngle: -0.5*CGFloat.pi, duration: 1)
+        let right = SKAction.moveBy(x: 300, y: 0, duration: 2)
+        let turnSouth = SKAction.rotate(byAngle: -0.5*CGFloat.pi, duration: 1)
+        let down = SKAction.moveBy(x: 0, y: -800, duration: 4)
+        let turnWest = SKAction.rotate(byAngle: -0.5*CGFloat.pi, duration: 1)
+        let west = SKAction.moveBy(x: -300, y: 0, duration: 5)
+        let turnNorth = SKAction.rotate(byAngle: -0.5*CGFloat.pi, duration: 1)
+        let antSeq = SKAction.sequence([up, turnEast, right, turnSouth, down, turnWest, west, turnNorth])
+        ant.run(SKAction.repeatForever(antSeq))
+        
     }
 
     override func update(_ currentTime: TimeInterval) {
-        ant.position = CGPoint(x: ant.position.x, y: ant.position.y + 2)
+//        ant.position = CGPoint(x: ant.position.x, y: ant.position.y + 2)
     }
     
     func drawOval() {
