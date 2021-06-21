@@ -10,6 +10,19 @@ import GameplayKit
 
 class GameScene: SKScene {
     let ant = SKSpriteNode(imageNamed: "ant0")
+    let antAnimAct: SKAction
+    
+    override init(size: CGSize) {
+        let antFrame0 = SKTexture(imageNamed: "ant0")
+        let antFrame1 = SKTexture(imageNamed: "ant1")
+        let antTextures: [SKTexture] = [antFrame0, antFrame1]
+        antAnimAct = SKAction.animate(with: antTextures, timePerFrame: 0.2)
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView) {
         backgroundColor = UIColor.white
@@ -20,6 +33,8 @@ class GameScene: SKScene {
         
         ant.position = CGPoint(x: 300, y: 0)
         addChild(ant)
+        
+        ant.run(SKAction.repeatForever(antAnimAct))
     }
 
     override func update(_ currentTime: TimeInterval) {
